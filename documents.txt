@@ -1,0 +1,21 @@
+-xdotool for simulate mouse and keyboard
+xdotool operations used:
+xdotool getactivewindow
+
+xdotool windowfocus 73400324
+
+sleep 0.5 ;xdotool type "text"
+
+
+-lambda functions
+# b = Button(self.frame,text="Send", command=lambda:send_cmd(wid_Frame_block0_0))
+		# b.pack(side=RIGHT)
+		
+-backups
+def send_cmd(focusedWindow,termf):
+	cmdWin = focusedWindow + 11
+	print type(cmdWin)
+	print cmdWin
+	termf.takefocus = 1
+	os.system('eval "$(xdotool getmouselocation)";xdotool mousemove 0 0;xdotool mousemove --screen 0 2600 800')
+	os.system('xdotool getmouselocation ; xdotool windowactivate --sync %d ;xdotool getactivewindow;sleep 0.5;xdotool type "text";xdotool key KP_Enter' % cmdWin)

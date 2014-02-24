@@ -1,0 +1,8 @@
+development progress:
+1. restart from where i left when i finished EMC coop
+-only about to execute cmd on back ground
+
+2. embeded four x-terminals
+
+2013-11-28
+3. added tabs function
