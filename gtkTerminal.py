@@ -162,10 +162,10 @@ class cmdSnapshot:
 		# self.frame = Frame(master)# to adapt to tab formate
 		self.frame = master
 		self.frame.pack()
-		self.Frame_block0_0 = Frame(self.frame, height=550, width=400)
-		self.Frame_block0_1 = Frame(self.frame, height=550, width=400)
-		self.Frame_block1_0 = Frame(self.frame, height=550, width=400)
-		self.Frame_block1_1 = Frame(self.frame, height=550, width=400)
+		self.Frame_block0_0 = Frame(self.frame, height=500, width=400)
+		self.Frame_block0_1 = Frame(self.frame, height=500, width=400)
+		self.Frame_block1_0 = Frame(self.frame, height=500, width=400)
+		self.Frame_block1_1 = Frame(self.frame, height=500, width=400)
 		self.Frame_block0_0.grid(row = r,column = c - 1 ,columnspan = 2)
 		self.Frame_block0_1.grid(row = r,column = c + 1)
 		self.Frame_block1_0.grid(row = r,column = c + 2)
@@ -178,7 +178,7 @@ class cmdSnapshot:
 		
 		# b = Button(self.frame,text="Send", command=lambda:send_cmd(wid_Frame_block0_0))
 		# b.pack(side=RIGHT)
-		initCmds = ". ~/.bash_profile; cd ~/groovy_workspace/wrecs;" 
+		initCmds = "cd ~/Webdev/ROR/vocvov/upgrade4vocvov/vocvov;" 
 		print os.system('xterm -into %d -geometry 63x40 -sb -e " %s /bin/bash" &' % (wid_Frame_block0_0,initCmds) )
 		print os.system('xterm -into %d -geometry 63x40 -sb -e " %s /bin/bash" &' % (wid_Frame_block0_1,initCmds) )
 		print os.system('xterm -into %d -geometry 63x40 -sb -e " %s /bin/bash" &' % (wid_Frame_block1_0,initCmds) )
@@ -230,6 +230,10 @@ class cmdSnapshot:
 		self.Button_delSnapshot.grid(row=r, column=c + 2)
 		r = r + 1
 
+		self.Button_closeUI = Button(self.frame, text="Close All Window", command=self.closeUI)
+		self.Button_closeUI.grid(row=r, column=c + 2)
+		r = r + 1
+
 		
 
 	def executeCmdsCombination(self):
@@ -256,6 +260,9 @@ class cmdSnapshot:
 		self.snapshotParser.deleteFromListThenFromFile(TextContent)
 		self.insertAllSnapshots()
 
+	def closeUI(self):
+		os.system('killall xterm')
+		root.destroy()
 
 	# def isDoubleClick():
 
@@ -324,8 +331,8 @@ note = Notebook(root, width= 1800, height =700, activefg = 'red', inactivefg = '
 # note.grid()
 #TODO: make it a list
 tab1 = note.add_tab(text = "snapshots")                                                  #Create a tab with the text "Tab One"
-tab2 = note.add_tab(text = "window1")                                                  #Create a tab with the text "Tab Two"
-tab3 = note.add_tab(text = "window2")                                                #Create a tab with the text "Tab Three"
+# tab2 = note.add_tab(text = "window1")                                                  #Create a tab with the text "Tab Two"
+# tab3 = note.add_tab(text = "window2")                                                #Create a tab with the text "Tab Three"
 
 
 dirname, filename = os.path.split(os.path.abspath(__file__))
@@ -336,8 +343,8 @@ newSnapshotParser = SnapshotParser(snapshotsFilePath)
 windows = cmdSnapshot(tab1,newSnapshotParser)
 windows.insertAllSnapshots()
 # short version:()combine everything in one line
-cmdSnapshot(tab2,SnapshotParser(dirname + "/window1.txt")).insertAllSnapshots()
-cmdSnapshot(tab2,SnapshotParser(dirname + "/window2.txt")).insertAllSnapshots()
+# cmdSnapshot(tab2,SnapshotParser(dirname + "/window1.txt")).insertAllSnapshots()
+# cmdSnapshot(tab2,SnapshotParser(dirname + "/window2.txt")).insertAllSnapshots()
 
 
 # for default ,you might want to give the recent cmd.
@@ -362,8 +369,8 @@ note.focus_on(tab5)
 """
 # 2. the current one. the height and width doesn't matter, the content will fit the container frame
 # focus_on all five tabs will disable the GUI from auto fit the content, it will go to the notebook size as specified before.
-note.focus_on(tab3)
-note.focus_on(tab2)
+# note.focus_on(tab3)
+# note.focus_on(tab2)
 
 
 
