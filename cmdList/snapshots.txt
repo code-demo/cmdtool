@@ -1,2 +1,9 @@
+cd client
+rake db:drop && rake db:create && rake db:migrate && rake db:seed
+grunt heroku --verbose --debug --force
+rails s
+grunt serve --verbose --debug --force
+grunt build --verbose --debug --force
+grunt fileblocks
 ----snapshots----
 killall xterm

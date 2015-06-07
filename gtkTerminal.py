@@ -165,7 +165,7 @@ class cmdSnapshot:
 		self.Frame_block0_0 = Frame(self.frame, height=500, width=400)
 		self.Frame_block0_1 = Frame(self.frame, height=500, width=400)
 		self.Frame_block1_0 = Frame(self.frame, height=500, width=400)
-		self.Frame_block1_1 = Frame(self.frame, height=500, width=400)
+		self.Frame_block1_1 = Frame(self.frame, height=500, width=350)
 		self.Frame_block0_0.grid(row = r,column = c - 1 ,columnspan = 2)
 		self.Frame_block0_1.grid(row = r,column = c + 1)
 		self.Frame_block1_0.grid(row = r,column = c + 2)
@@ -178,7 +178,8 @@ class cmdSnapshot:
 		
 		# b = Button(self.frame,text="Send", command=lambda:send_cmd(wid_Frame_block0_0))
 		# b.pack(side=RIGHT)
-		initCmds = "cd ~/Webdev/ROR/vocvov/upgrade4vocvov/vocvov;" 
+		# Note: need ';' to hold the terminal open!!!
+		initCmds = "cd ~/Webdev/ROR/vocvov/upgrade4vocvov/vocvov/ ;" 
 		print os.system('xterm -into %d -geometry 63x40 -sb -e " %s /bin/bash" &' % (wid_Frame_block0_0,initCmds) )
 		print os.system('xterm -into %d -geometry 63x40 -sb -e " %s /bin/bash" &' % (wid_Frame_block0_1,initCmds) )
 		print os.system('xterm -into %d -geometry 63x40 -sb -e " %s /bin/bash" &' % (wid_Frame_block1_0,initCmds) )
